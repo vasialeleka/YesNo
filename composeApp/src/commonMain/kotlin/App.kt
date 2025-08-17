@@ -1,11 +1,10 @@
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import data.FirestoreUserRepository
-import data.InMemoryUserRepository
+import data.FirestoreGameRepository
 import presentation.UserScreen
 
 @Composable
 fun App() {
-    val userRepository = remember { FirestoreUserRepository() }
+    val userRepository = remember { FirestoreGameRepository() }
     UserScreen(userRepository)
 }

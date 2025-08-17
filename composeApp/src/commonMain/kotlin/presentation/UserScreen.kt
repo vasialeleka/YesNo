@@ -11,18 +11,21 @@ import androidx.compose.ui.Modifier
 import components.BottomSheetContent
 import components.UserList
 import domain.User
-import domain.UserRepository
+import domain.GameRepository
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @Composable
-fun UserScreen(repository: UserRepository) {
+fun UserScreen(repository: GameRepository) {
     val scope = rememberCoroutineScope()
-    val users by repository.getUsers().collectAsState(emptyList())
+    GlobalScope.launch {
+        println("UserScreen ${repository.getGamePacks()}")
+    }
     UserScreenContent(
-        users = users,
-        addUser = { scope.launch { repository.addUser(it) } },
-        updateUser = { scope.launch { repository.updateUser(it) } },
-        deleteUser = { scope.launch { repository.deleteUser(it) } },
+        users = emptyList(),
+        addUser = {  },
+        updateUser = { },
+        deleteUser = { },
     )
 }
 
