@@ -43,6 +43,7 @@ kotlin {
             implementation(project.dependencies.platform(libs.android.firebase.bom))
         }
         commonMain.dependencies {
+            val voyagerVersion = "1.1.0-beta02"
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
@@ -54,6 +55,12 @@ kotlin {
 
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.gitlive.firebase.firestore)
+            implementation("cafe.adriel.voyager:voyager-navigator:${voyagerVersion}")    /*        implementation("cafe.adriel.voyager:voyager-navigator:1.0.0-beta19")
+            implementation("cafe.adriel.voyager:voyager-bottom-sheet-navigator:1.0.0-beta19") */
+            implementation("cafe.adriel.voyager:voyager-lifecycle-kmp:${voyagerVersion}")
+            implementation("cafe.adriel.voyager:voyager-screenmodel:${voyagerVersion}")
+            implementation("io.insert-koin:koin-core:3.5.3")
+            implementation("cafe.adriel.voyager:voyager-koin:${voyagerVersion}")// якщо будеш використовувати Koin
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
