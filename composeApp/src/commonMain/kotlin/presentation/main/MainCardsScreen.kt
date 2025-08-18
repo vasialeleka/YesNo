@@ -88,6 +88,17 @@ class MainCardsScreen : BaseScreen<MainCardsViewModel, MainCardsState, EmptyInit
                                 )
                             )
                         )
+/*
+                        navigator.push(
+                            DescriptionScreen(
+                                DescriptionInitData(
+                                    id = game.id,
+                                    colorHex = game.colorHex,
+                                    title = game.getTitle(),
+                                    description = game.getDescription()
+                                )
+                            )
+                        )*/
                         /*  Log.d("Networkk", "Gme details ${game}")
                           if (state.payedProducts.contains(Product.MonthSubs) || state.payedProducts.contains(
                                   Product.getById(game.productId)

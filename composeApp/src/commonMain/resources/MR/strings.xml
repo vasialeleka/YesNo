@@ -1,0 +1,7 @@
+<resources>
+    <string name="common.name">Test Project</string>
+    <string name="game.next">Next</string>
+    <string name="game_previous">Previous</string>
+    <string name="game_answer">Show answer</string>
+    <string name="game_answer_hide">Hide answer</string>
+</resources>

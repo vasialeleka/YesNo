@@ -42,6 +42,7 @@ fun DocumentSnapshot.toGameCardPack(): GameCardPack? {
             colorHex = get("colorHex") ?: "#000000"
         )
     } catch (e: Exception) {
+        println("🔥 Failed to fetch GameCardPack: $e")
         null
     }
 }
@@ -55,6 +56,7 @@ fun DocumentSnapshot.toGameCard(): GameCard? {
             title = get("title") as? Map<String, String> ?: emptyMap()
         )
     } catch (e: Exception) {
+        println("🔥 Failed to fetch GamePack: $e")
         null
     }
 }

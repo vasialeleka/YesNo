@@ -6,7 +6,7 @@ import presentation.description.model.DescriptionInitData
 
 data class DescriptionState(
     val title: String = "",
-    val colorHex: String = "",
+    val colorHex: String = "#000000",
     val cardDescription: List<String> = emptyList()
 ) : State
 
