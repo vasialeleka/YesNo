@@ -79,7 +79,7 @@ class MainCardsScreen : BaseScreen<MainCardsViewModel, MainCardsState, EmptyInit
                         .padding(start = 16.dp, end = 16.dp)
                         .zIndex(state.packs.size + index.toFloat()),
                     onClick = {
-                        navigator.push(
+                       /* navigator.push(
                             QuestionScreen(
                                 QuestionInitData(
                                     id = game.id,
@@ -87,8 +87,8 @@ class MainCardsScreen : BaseScreen<MainCardsViewModel, MainCardsState, EmptyInit
                                     title = game.getTitle()
                                 )
                             )
-                        )
-/*
+                        )*/
+
                         navigator.push(
                             DescriptionScreen(
                                 DescriptionInitData(
@@ -98,7 +98,7 @@ class MainCardsScreen : BaseScreen<MainCardsViewModel, MainCardsState, EmptyInit
                                     description = game.getDescription()
                                 )
                             )
-                        )*/
+                        )
                         /*  Log.d("Networkk", "Gme details ${game}")
                           if (state.payedProducts.contains(Product.MonthSubs) || state.payedProducts.contains(
                                   Product.getById(game.productId)

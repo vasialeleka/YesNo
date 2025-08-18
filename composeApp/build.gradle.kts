@@ -9,7 +9,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
 
     kotlin("plugin.serialization")
-    id("dev.icerock.mobile.multiplatform-resources") version "0.25.0"
     id("com.google.gms.google-services")
 
     }
@@ -57,10 +56,7 @@ kotlin {
 
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.gitlive.firebase.firestore)
-            api("dev.icerock.moko:resources:0.25.0")
-            implementation("dev.icerock.moko:resources-compose:0.25.0")
-            implementation("cafe.adriel.voyager:voyager-navigator:${voyagerVersion}")    /*        implementation("cafe.adriel.voyager:voyager-navigator:1.0.0-beta19")
-            implementation("cafe.adriel.voyager:voyager-bottom-sheet-navigator:1.0.0-beta19") */
+            implementation("cafe.adriel.voyager:voyager-navigator:${voyagerVersion}")
             implementation("cafe.adriel.voyager:voyager-lifecycle-kmp:${voyagerVersion}")
             implementation("cafe.adriel.voyager:voyager-screenmodel:${voyagerVersion}")
             implementation("io.insert-koin:koin-core:3.5.3")
@@ -112,11 +108,6 @@ android {
     }
 
 }
-
-multiplatformResources {
-    resourcesPackage.set("com.game.yes")
-}
-
 
 compose.desktop {
     application {

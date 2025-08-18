@@ -18,12 +18,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import dev.icerock.moko.resources.compose.stringResource
-import com.game.yes.MR
+import firestore.composeapp.generated.resources.Res
+import firestore.composeapp.generated.resources.game_next
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun NextButton(
-    title : String = stringResource(resource = MR.strings.game_next),
+    title : String = stringResource(Res.string.game_next),
     modifier: Modifier = Modifier,
     isArrowVisible: Boolean = true,
     onClick: () -> Unit
