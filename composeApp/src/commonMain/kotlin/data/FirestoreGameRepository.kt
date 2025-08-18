@@ -18,23 +18,27 @@ class FirestoreGameRepository : GameRepository {
             .mapNotNull { it.toGameCardPack() } // без ігор
     }
 
-    override suspend fun getGamePackById(id: String): GameCardPack? {
-        val doc = firestore.collection("LanguageGamesCards")
+    override suspend fun getGamesForPack(id: String): List<GameCard> {
+        return firestore.collection("LanguageGamesCards")
             .document(id)
+            .collection("game") // <- games мають бути підколекцією
             .get()
-
-        return doc.toGameCardPack()
-    }}
+            .documents
+            .mapNotNull { it.toGameCard() }
+            .sortedBy { it.id.toIntOrNull() ?: Int.MAX_VALUE }
+    }
+}
 
 fun DocumentSnapshot.toGameCardPack(): GameCardPack? {
     return try {
+
         GameCardPack(
             id = id,
             title = get("title") as? Map<String, String> ?: emptyMap(),
-            description = get("description") as? Map<String, String> ?: emptyMap() ,
+            description = get("description") as? Map<String, List<String>> ?: emptyMap() ,
             productId = get("productId") ?: "",
             isPaid = get("isPaid")?: false,
-            priceAmount = get("priceAmount") ?: 0,
+            priceAmount = get("priceAmount") ?: 0.0,
             colorHex = get("colorHex") ?: "#000000"
         )
     } catch (e: Exception) {

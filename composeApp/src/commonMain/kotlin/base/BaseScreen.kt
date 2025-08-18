@@ -3,18 +3,27 @@ package base
 import androidx.compose.runtime.*
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 
-abstract class BaseScreen<VM : BaseVM<S>, S: State> : Screen {
+abstract class BaseScreen<VM : BaseVM<S, D>, S: State, D: InitData?> : Screen {
 
     @Composable
-    abstract fun provideVm() : VM
+    abstract fun provideVm(): VM
+
+    open fun provideInitData(): D? = null //можна видалити
 
     @Composable
     override fun Content() {
         val viewModel = provideVm()
         val state by viewModel.state.collectAsState()
         val navigator = LocalNavigator.currentOrThrow
+
+        LaunchedEffect(Unit) {
+            provideInitData()?.let {
+                viewModel.initWithData(it)
+            }
+        }
 
         Content(state = state, viewModel = viewModel, navigator = navigator)
     }
@@ -23,5 +32,6 @@ abstract class BaseScreen<VM : BaseVM<S>, S: State> : Screen {
     protected abstract fun Content(
         state: S,
         viewModel: VM,
-        navigator: cafe.adriel.voyager.navigator.Navigator)
+        navigator: Navigator
+    )
 }

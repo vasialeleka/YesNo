@@ -9,13 +9,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import base.baseModule
 import base.initKoin
 import com.google.firebase.FirebaseApp
+import presentation.description.descriptionModule
 import presentation.main.mainCardsModule
+import presentation.questions.questionModule
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this)
-        initKoin(baseModule, mainCardsModule)
+        initKoin(baseModule, mainCardsModule, descriptionModule, questionModule)
         setContent {
             App()
         }

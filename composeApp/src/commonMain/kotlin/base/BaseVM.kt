@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-abstract class BaseVM<S : Any>(
+abstract class BaseVM<S : Any , Data : InitData?>(
     initialState: S
 ) : ScreenModel {
 
@@ -15,4 +15,7 @@ abstract class BaseVM<S : Any>(
     protected fun updateState(reducer: S.() -> S) {
         _state.value = _state.value.reducer()
     }
+
+    open fun initWithData(initData : Data) {}
+
 }
