@@ -2,6 +2,9 @@ package presentation.description
 
 import base.BaseVM
 import base.State
+import billing.BillingRepository
+import cafe.adriel.voyager.core.model.screenModelScope
+import kotlinx.coroutines.launch
 import presentation.description.model.DescriptionInitData
 
 data class DescriptionState(
@@ -10,7 +13,9 @@ data class DescriptionState(
     val cardDescription: List<String> = emptyList()
 ) : State
 
-class DescriptionViewModel : BaseVM<DescriptionState, DescriptionInitData>(DescriptionState()) {
+class DescriptionViewModel(
+    private val billingRepository: BillingRepository
+) : BaseVM<DescriptionState, DescriptionInitData>(DescriptionState()) {
     override fun initWithData(initData: DescriptionInitData) {
         super.initWithData(initData)
         updateState {
@@ -19,6 +24,12 @@ class DescriptionViewModel : BaseVM<DescriptionState, DescriptionInitData>(Descr
                 cardDescription = initData.description,
                 colorHex = initData.colorHex
             )
+        }
+        screenModelScope.launch {
+            println("Result ${billingRepository.getPurchasedProducts()}")
+            val result = billingRepository.launchPurchaseFlow("about_kills")
+            println("Result ${result}")
+
         }
     }
 }

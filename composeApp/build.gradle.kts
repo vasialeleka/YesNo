@@ -42,6 +42,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(project.dependencies.platform(libs.android.firebase.bom))
             implementation("dev.icerock.moko:resources-compose:0.23.0")
+            implementation("com.android.billingclient:billing-ktx:7.1.1")
         }
         commonMain.dependencies {
             val voyagerVersion = "1.1.0-beta02"
